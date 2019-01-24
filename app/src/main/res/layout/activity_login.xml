@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:background="@color/backgroundgrey"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/logintoolbar"
+        android:background="@color/mainColor"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/LoginLinearLayout"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+
+        >
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="40sp"
+            android:hint="registration number"
+            android:id="@+id/regnuber"
+            android:background="@drawable/default_input_field"
+            android:layout_marginTop="20dp"
+
+            />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="40sp"
+            android:hint="password"
+            android:background="@drawable/default_input_field"
+            android:id="@+id/password"
+            android:layout_marginTop="20dp"
+            android:password="true"
+            />
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/loginBtn"
+            android:background="@drawable/default_button"
+            android:text="Login"
+            android:onClick="Login"
+            android:layout_marginTop="20sp"
+            />
+
+    </LinearLayout>
+
+
+</GridLayout>
