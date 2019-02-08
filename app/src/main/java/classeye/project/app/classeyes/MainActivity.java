@@ -1,5 +1,6 @@
 package classeye.project.app.classeyes;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +9,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
+
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         tabLayout.addTab(tabLayout.newTab().setText("Home"));
-        tabLayout.addTab(tabLayout.newTab().setText("Sign In"));
         tabLayout.addTab(tabLayout.newTab().setText("Extra"));
         tabLayout.addTab(tabLayout.newTab().setText("Records"));
 
@@ -70,6 +74,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        IntentResult result= IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if(result != null) {
+            if(result.getContents() == null) {
+                Toast.makeText(MainActivity.this, "Scan Again", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(MainActivity.this,result.getContents(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
 
 
     }

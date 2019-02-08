@@ -6,4 +6,6 @@
     <color name="mainColor">#efb71d</color>
     <color name="textColor">#FFF</color>
     <color name="backgroundgrey">#dad8d8</color>
+    <color name="buttonsBlue">#1b18cf</color>
+    <color name="almostWhite">#eae7e7</color>
 </resources>

@@ -21,12 +21,9 @@ public class PageAdapter extends FragmentPagerAdapter {
                 return new Home();
 
             case 1:
-                return new SignIn();
-
-            case 2:
                 return new extrapage();
 
-            case 3:
+            case 2:
                 return new Records();
 
                 default:
