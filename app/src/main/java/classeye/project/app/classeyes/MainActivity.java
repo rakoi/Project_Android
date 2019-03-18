@@ -1,6 +1,8 @@
 package classeye.project.app.classeyes;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -9,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -36,10 +40,20 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(R.drawable.menu);
         toolbar.setTitle("Class Eye");
 
+        SharedPreferences sp=getSharedPreferences("classeye", Context.MODE_PRIVATE);
+
+        String fname=sp.getString("firstname","");
+        String lname=sp.getString("lastname","");
+        String admNo=sp.getString("admnumber","");
+
+        TextView username=(TextView) findViewById(R.id.username);
+        TextView admnumber=(TextView)findViewById(R.id.admnumber);
+        username.setText(fname +" "+lname);
+        admnumber.setText(admNo);
 
 
         tabLayout.addTab(tabLayout.newTab().setText("Home"));
-        tabLayout.addTab(tabLayout.newTab().setText("Extra"));
+        tabLayout.addTab(tabLayout.newTab().setText("Chart"));
         tabLayout.addTab(tabLayout.newTab().setText("Records"));
 
         pageAdapter=new PageAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
@@ -87,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+
+
+    }
+    public void Logout(View view){
+        SharedPreferences.Editor editor=getSharedPreferences("classeye", Context.MODE_PRIVATE).edit();
+        editor.putInt("id",0);
+        editor.apply();
+        startActivity(new Intent(this,LoginActivity.class));
 
 
     }

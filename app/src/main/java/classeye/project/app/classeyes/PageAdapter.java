@@ -21,7 +21,7 @@ public class PageAdapter extends FragmentPagerAdapter {
                 return new Home();
 
             case 1:
-                return new extrapage();
+                return new Chart();
 
             case 2:
                 return new Records();

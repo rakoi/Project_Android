@@ -14,6 +14,7 @@
         android:text="Wednesday 31 January 2019"
         android:layout_gravity="center"
         android:gravity="center"
+        android:id="@+id/time"
         android:textStyle="italic"
         android:padding="5sp"
         />
@@ -29,10 +30,10 @@
 
     <GridLayout
         android:id="@+id/gridLayout"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
         android:background="@drawable/classes_background"
@@ -89,7 +90,7 @@
             android:id="@+id/TimeLabel"
             android:layout_column="0"
             android:layout_row="3"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="10sp"
 
             />
         <TextView
@@ -97,7 +98,7 @@
             android:id="@+id/Time"
             android:layout_column="2"
             android:layout_row="3"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="10sp"
 
             />
 

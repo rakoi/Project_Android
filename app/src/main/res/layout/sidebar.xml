@@ -32,6 +32,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/admnumber"
             android:text="JKC/D01/0210/2015"
             />
 
@@ -97,12 +98,14 @@
 
 
     </GridLayout>
+
     <Button
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:background="@drawable/default_button"
         android:layout_weight="0"
+        android:background="@drawable/default_button"
+        android:onClick="Logout"
 
-        />
+        android:text="Logout" />
 </LinearLayout>
