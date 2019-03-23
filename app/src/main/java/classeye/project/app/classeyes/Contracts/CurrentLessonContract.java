@@ -3,6 +3,7 @@ package classeye.project.app.classeyes.Contracts;
 import android.view.LayoutInflater;
 
 import classeye.project.app.classeyes.Dao.Lesson;
+import classeye.project.app.classeyes.Home;
 
 public interface CurrentLessonContract {
 
@@ -12,6 +13,7 @@ public interface CurrentLessonContract {
     }
     interface Presenter{
         void getLesson();
+        void setView(CurrentLessonContract.View view);
     }
     interface Model{
         interface OnFinishedListener{

@@ -16,9 +16,12 @@ import org.w3c.dom.Text;
 
 import java.util.Calendar;
 
+import javax.inject.Inject;
+
 import classeye.project.app.classeyes.Contracts.CurrentLessonContract;
 import classeye.project.app.classeyes.Dao.Lesson;
 import classeye.project.app.classeyes.Presenter.CurrentLessonPresenter;
+import classeye.project.app.classeyes.root.MyApp;
 
 
 /**
@@ -30,6 +33,8 @@ public class Home extends Fragment implements CurrentLessonContract.View{
     public int RESULT_CANCELED = 0;
     public IntentIntegrator intentIntegrator;
     public Lesson currentLesson=new Lesson();
+
+    @Inject
     public CurrentLessonContract.Presenter presenter;
 
     public Home() {
@@ -40,8 +45,9 @@ public class Home extends Fragment implements CurrentLessonContract.View{
     @Override
     public void onResume() {
         super.onResume();
-        presenter=new CurrentLessonPresenter(this,getContext());
-        presenter.getLesson();
+        //presenter=new CurrentLessonPresenter(this,getContext());
+
+
     }
 
     @Override
@@ -51,14 +57,17 @@ public class Home extends Fragment implements CurrentLessonContract.View{
 
         Button checkInBtn=view.findViewById(R.id.checkIn);
 
-        presenter=new CurrentLessonPresenter(this,getContext());
+       // presenter=new CurrentLessonPresenter(this,getContext());
+        MyApp.getMyApp().getCurrentLessonComponent().inject(this);
+
+        presenter.setView(this);
+
         presenter.getLesson();
+
         TextView lecuturer=view.findViewById(R.id.Lecturer);
         TextView Lecture=view.findViewById(R.id.Lecture);
         TextView Time=view.findViewById(R.id.Time);
         TextView unitCode=view.findViewById(R.id.UnitCode);
-
-
 
 
         TextView timeView=view.findViewById(R.id.time);

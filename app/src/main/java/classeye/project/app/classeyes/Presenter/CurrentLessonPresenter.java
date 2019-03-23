@@ -11,11 +11,19 @@ public class CurrentLessonPresenter  implements CurrentLessonContract.Presenter,
     public CurrentLessonContract.Model model;
     public CurrentLessonContract.View view;
 
-    public CurrentLessonPresenter(CurrentLessonContract.View view, Context context) {
-        this.model = new CurrentLessonManager(context);
-        this.view = view;
+//    public CurrentLessonPresenter(CurrentLessonContract.View view Context context) {
+//        this.model =model
+//        this.view = view;
+//    }
+
+        public CurrentLessonPresenter(CurrentLessonContract.Model model) {
+        this.model =model;
     }
 
+    @Override
+    public void setView(CurrentLessonContract.View view) {
+        this.view = view;
+    }
 
     @Override
     public void getLesson() {
