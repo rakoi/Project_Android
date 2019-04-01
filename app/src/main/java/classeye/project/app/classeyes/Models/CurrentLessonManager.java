@@ -34,7 +34,13 @@ public class CurrentLessonManager implements CurrentLessonContract.Model {
             @Override
             public void onResponse(Call<Lesson> call, retrofit2.Response<Lesson> response) {
 
-                    onFinishedListener.onFinished(response.body());
+
+                   if (response.body()==null){
+                       onFinishedListener.onFinished(new Lesson("","","",""));
+                   }else {
+                       onFinishedListener.onFinished(response.body());
+                   }
+
 
             }
 

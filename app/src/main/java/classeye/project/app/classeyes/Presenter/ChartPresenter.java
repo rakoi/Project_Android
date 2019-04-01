@@ -1,5 +1,7 @@
 package classeye.project.app.classeyes.Presenter;
 
+import android.content.SharedPreferences;
+
 import java.util.HashMap;
 
 import classeye.project.app.classeyes.Contracts.ChartContract;
@@ -10,9 +12,9 @@ public class ChartPresenter implements ChartContract.Presenter,ChartContract.Mod
     public ChartContract.View view;
     public ChartContract.Model model;
 
-    public ChartPresenter(ChartContract.View view) {
+    public ChartPresenter(ChartContract.View view, SharedPreferences sharedPreferences) {
         this.view = view;
-        this.model=new ChartDataManager();
+        this.model=new ChartDataManager(sharedPreferences);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class CurrentLessonPresenter  implements CurrentLessonContract.Presenter,
     @Override
     public void onFailure(Throwable t) {
         view.failure(t);
-        Lesson lesson=new Lesson("","","","");
+        Lesson lesson=new Lesson("","--","--","--");
         view.ShowLesson(lesson);
 
     }

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,22 +19,32 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import classeye.project.app.classeyes.Contracts.CheckinContract;
+import classeye.project.app.classeyes.Dao.Attendance;
+import classeye.project.app.classeyes.Presenter.CheckInPresenter;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements CheckinContract.View {
 
     public DrawerLayout drawerLayout;
     public TabLayout tabLayout;
     public ViewPager viewPager;
     public PageAdapter pageAdapter;
+    public CheckinContract.Presenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         Toolbar toolbar=findViewById(R.id.MainActivityToolBar);
         drawerLayout=findViewById(R.id.myDrawerLayout);
         tabLayout=findViewById(R.id.myTabLayout);
         viewPager=findViewById(R.id.myViewPager);
+
+        presenter=new CheckInPresenter(this);
+
 
 
         setSupportActionBar(toolbar);
@@ -96,11 +107,13 @@ public class MainActivity extends AppCompatActivity {
             if(result.getContents() == null) {
                 Toast.makeText(MainActivity.this, "Scan Again", Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(MainActivity.this,result.getContents(), Toast.LENGTH_LONG).show();
-            }
+                presenter.passLessonName(result.getContents().toString());
+
+             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+
 
 
     }
@@ -111,5 +124,28 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this,LoginActivity.class));
 
 
+    }
+
+
+
+    @Override
+    public void showError(String error) {
+        Toast.makeText(MainActivity.this,error, Toast.LENGTH_LONG).show();
+
+    }
+
+    @Override
+    public void showResponse(Attendance attendance) {
+        if (attendance==null){
+
+            Toast.makeText(MainActivity.this,"Invalid", Toast.LENGTH_LONG).show();
+
+        }else {
+
+            Toast.makeText(MainActivity.this,"Signed In", Toast.LENGTH_LONG).show();
+
+            Button button=findViewById(R.id.checkIn);
+            button.setEnabled(false);
+        }
     }
 }

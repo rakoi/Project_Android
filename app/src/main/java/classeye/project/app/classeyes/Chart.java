@@ -1,6 +1,8 @@
 package classeye.project.app.classeyes;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -51,7 +53,8 @@ public class Chart extends Fragment implements ChartContract.View {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        this.presenter=new ChartPresenter(this);
+        SharedPreferences sharedPreferences=getContext().getSharedPreferences("classeye", Context.MODE_PRIVATE);
+        this.presenter=new ChartPresenter(this,sharedPreferences);
         presenter.passRecords();
         View view=inflater.inflate(R.layout.fragment_extrapage, container, false);
 
@@ -89,14 +92,16 @@ public class Chart extends Fragment implements ChartContract.View {
         }
 
         ArrayList<Integer> colors=new ArrayList<>();
-        colors.add(Color.MAGENTA);
-        colors.add(Color.CYAN);
-        colors.add(Color.BLUE);
-        colors.add(Color.LTGRAY);
-        colors.add(Color.GREEN);
-        colors.add(Color.BLACK);
-        colors.add(Color.YELLOW);
+        colors.add(Color.rgb(66,133,244));//blue
 
+        colors.add(Color.rgb(219,68,55) );//red
+        colors.add(Color.rgb(244,160,0));//yellow
+        colors.add(Color.rgb(15,157,88));//green
+        colors.add(Color.LTGRAY);
+
+        colors.add(Color.rgb(255,165,0));//orange
+
+        colors.add(Color.MAGENTA);
 
 
         PieDataSet dataSet=new PieDataSet(entries,"Attendance");
@@ -104,8 +109,9 @@ public class Chart extends Fragment implements ChartContract.View {
         dataSet.setValueTextSize(11);
         PieData data=new PieData(dataSet);
         data.setValueFormatter(new PercentFormatter());
-        mChart.setEntryLabelColor(Color.BLACK);
+        mChart.setEntryLabelColor(Color.WHITE);
         mChart.setData(data);
+        mChart.getLegend().setWordWrapEnabled(true);
         mChart.invalidate();
 
     }

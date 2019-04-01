@@ -18,8 +18,10 @@ import java.util.Calendar;
 
 import javax.inject.Inject;
 
+import classeye.project.app.classeyes.Contracts.CheckinContract;
 import classeye.project.app.classeyes.Contracts.CurrentLessonContract;
 import classeye.project.app.classeyes.Dao.Lesson;
+import classeye.project.app.classeyes.Presenter.CheckInPresenter;
 import classeye.project.app.classeyes.Presenter.CurrentLessonPresenter;
 import classeye.project.app.classeyes.root.MyApp;
 
@@ -33,6 +35,8 @@ public class Home extends Fragment implements CurrentLessonContract.View{
     public int RESULT_CANCELED = 0;
     public IntentIntegrator intentIntegrator;
     public Lesson currentLesson=new Lesson();
+
+    public CheckinContract.Presenter checkinPresenter;
 
     @Inject
     public CurrentLessonContract.Presenter presenter;
@@ -63,6 +67,11 @@ public class Home extends Fragment implements CurrentLessonContract.View{
         presenter.setView(this);
 
         presenter.getLesson();
+
+
+
+
+
 
         TextView lecuturer=view.findViewById(R.id.Lecturer);
         TextView Lecture=view.findViewById(R.id.Lecture);
@@ -96,7 +105,10 @@ public class Home extends Fragment implements CurrentLessonContract.View{
 
     @Override
     public void ShowLesson(final Lesson lesson) {
-            if(lesson!=null) {
+
+      //  Toast.makeText(getContext(),lesson.getName(),Toast.LENGTH_SHORT).show();
+
+        if(!lesson.getName().equals("")) {
                 TextView unitCode=(TextView)getView().findViewById(R.id.UnitCode);
                 TextView lessonName=(TextView)getView().findViewById(R.id.Lecture);
                 TextView time=(TextView)getView().findViewById(R.id.Time);
@@ -112,13 +124,16 @@ public class Home extends Fragment implements CurrentLessonContract.View{
                 TextView lessonName=(TextView)getView().findViewById(R.id.Lecture);
                 TextView time=(TextView)getView().findViewById(R.id.Time);
                 TextView lecturer=(TextView)getView().findViewById(R.id.Lecturer);
-                lecturer.setText("");
+                Button checkinBtn=getView().findViewById(R.id.checkIn);
 
+                //lecturer.setText("--");
                 time.setText("");
+            unitCode.setText("");
+                checkinBtn.setEnabled(false);
 
-                unitCode.setText("");
-                lessonName.setText("");
+                lessonName.setText("NO ACTIVE LESSON");
             }
+
 }
 
     @Override
@@ -130,7 +145,6 @@ public class Home extends Fragment implements CurrentLessonContract.View{
         }
 
     }
-
 
 
 }
