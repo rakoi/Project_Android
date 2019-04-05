@@ -17,42 +17,40 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10sp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
         >
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/UnitCodeR"
-            android:text="BIT 2214 :"
+            android:text="Unit Name"
             android:textStyle="bold"
+            android:id="@+id/unitNameLbl"
+            android:fontFamily="casual"
+            android:textSize="10sp"
+            android:layout_marginLeft="20dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/unitNameLbl"
             android:text="Object Oriented Programming 2"
             android:id="@+id/unitNameRecordR"
-            android:layout_toRightOf="@+id/UnitCodeR"
+            android:fontFamily="casual"
+            android:textSize="18sp"
             android:layout_marginLeft="20dp"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/unitNameRecordR"
-            android:text="Sam Athola"
-            android:id="@+id/LecturerNameR"
-            android:layout_toRightOf="@+id/UnitCodeR"
-            android:layout_marginLeft="20dp"
-            android:paddingTop="10dp"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:id="@+id/attendanceR"
+            android:layout_below="@+id/unitNameRecordR"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/LecturerNameR"
             android:background="@drawable/attendance_backgorund"
             android:fontFamily="serif"
+            android:textSize="15sp"
             android:layout_alignParentRight="true"
             android:text="4/12" />
     </RelativeLayout>

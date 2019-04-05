@@ -8,17 +8,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class RecordRecyclerView extends RecyclerView.Adapter<RecordRecyclerView.ViewHolder> {
 
 
-    public ArrayList<AttendanceRecord> records;
+    //public ArrayList<AttendanceRecord> records;
+    public HashMap<String,Integer>records;
     public Context context;
-
-    public RecordRecyclerView(Context context,ArrayList<AttendanceRecord> records) {
+    public ArrayList<String>unitNames=new ArrayList<>();
+    public ArrayList <Integer>attendance=new ArrayList<>();
+    public RecordRecyclerView(Context context,HashMap<String,Integer> records) {
         this.records=records;
         this.context=context;
+        for (String name : records.keySet()){
+            unitNames.add(name);
+            attendance.add(records.get(name));
+        }
+
     }
 
     @Override
@@ -32,10 +40,11 @@ public class RecordRecyclerView extends RecyclerView.Adapter<RecordRecyclerView.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.unitCodeTextView.setText(records.get(position).getUnitCode());
-        holder.unitNameTextView.setText(records.get(position).getUnitName());
-        holder.lectureName.setText(records.get(position).getLecturer());
-        holder.attendance.setText(records.get(position).getAttendance());
+
+        Object[] keys=records.keySet().toArray();
+        holder.unitNameTextView.setText(unitNames.get(position));
+
+        holder.attendance.setText(attendance.get(position).toString()+" Out of "+12);
 
     }
 
@@ -46,16 +55,12 @@ public class RecordRecyclerView extends RecyclerView.Adapter<RecordRecyclerView.
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView unitCodeTextView;
         public TextView unitNameTextView;
-        public TextView lectureName;
         public TextView attendance;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            unitCodeTextView=(TextView) itemView.findViewById(R.id.UnitCodeR);
             unitNameTextView=(TextView)itemView.findViewById(R.id.unitNameRecordR);
-            lectureName=(TextView)itemView.findViewById(R.id.LecturerNameR);
             attendance=(TextView)itemView.findViewById(R.id.attendanceR);
 
 

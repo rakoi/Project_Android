@@ -101,18 +101,34 @@ public class Home extends Fragment implements CurrentLessonContract.View{
                 TextView lessonName=(TextView)getView().findViewById(R.id.Lecture);
                 TextView time=(TextView)getView().findViewById(R.id.Time);
                 TextView lecturer=(TextView)getView().findViewById(R.id.Lecturer);
-                lecturer.setText("Lecturer 1");
+                //lecturer.setText("Lecturer 1");
 
                 time.setText(lesson.getLtime());
 
                 unitCode.setText(lesson.getUnitcode());
                 lessonName.setText(lesson.getName());
+            }else{
+                TextView unitCode=(TextView)getView().findViewById(R.id.UnitCode);
+                TextView lessonName=(TextView)getView().findViewById(R.id.Lecture);
+                TextView time=(TextView)getView().findViewById(R.id.Time);
+                TextView lecturer=(TextView)getView().findViewById(R.id.Lecturer);
+                lecturer.setText("");
+
+                time.setText("");
+
+                unitCode.setText("");
+                lessonName.setText("");
             }
 }
 
     @Override
     public void failure(Throwable t) {
-        Toast.makeText(getContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+
+        if (t.getMessage().equals("Network is unreachable")){
+            Toast.makeText(getContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
 
