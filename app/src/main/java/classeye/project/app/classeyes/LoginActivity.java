@@ -32,10 +32,7 @@ import classeye.project.app.classeyes.Presenter.UserPresenter;
 import classeye.project.app.classeyes.root.MyApp;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
-
-    public String loginUlr = "http://192.168.63.1:8080/api/student/login";
-
-    @Inject
+@Inject
     LoginContract.Presenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,4 +101,5 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         }
 
    }
+
 }

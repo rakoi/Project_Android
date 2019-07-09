@@ -24,7 +24,7 @@ public class UserDataManager implements LoginContract.Model {
 
     public User user;
     String message="";
-    public String loginUlr = "http://192.168.43.168:8080/api/student/login";
+    public String loginUlr = "http://68.183.73.119:8081/api/student/login";
     SharedPreferences sharedPreferences;
     Context context;
 
@@ -97,6 +97,8 @@ public class UserDataManager implements LoginContract.Model {
         credentials.put("id",String.valueOf(sharedPreferences.getInt("id",0)));
         return credentials;
     }
+
+
 
 
 }

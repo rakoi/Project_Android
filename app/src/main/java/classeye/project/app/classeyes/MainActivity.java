@@ -42,8 +42,11 @@ public class MainActivity extends AppCompatActivity implements CheckinContract.V
         drawerLayout=findViewById(R.id.myDrawerLayout);
         tabLayout=findViewById(R.id.myTabLayout);
         viewPager=findViewById(R.id.myViewPager);
+        SharedPreferences sp=getSharedPreferences("classeye", Context.MODE_PRIVATE);
 
-        presenter=new CheckInPresenter(this);
+
+
+        presenter=new CheckInPresenter(this,sp);
 
 
 
@@ -51,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements CheckinContract.V
         toolbar.setNavigationIcon(R.drawable.menu);
         toolbar.setTitle("Class Eye");
 
-        SharedPreferences sp=getSharedPreferences("classeye", Context.MODE_PRIVATE);
 
         String fname=sp.getString("firstname","");
         String lname=sp.getString("lastname","");
@@ -147,5 +149,17 @@ public class MainActivity extends AppCompatActivity implements CheckinContract.V
             Button button=findViewById(R.id.checkIn);
             button.setEnabled(false);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

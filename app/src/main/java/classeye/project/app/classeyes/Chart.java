@@ -41,10 +41,17 @@ public class Chart extends Fragment implements ChartContract.View {
     public ArrayList<Integer> ydata=new ArrayList<>();
     public PieChart mChart;
     public ChartContract.Presenter presenter;
+    public SharedPreferences sharedPreferences;
 
 
     public Chart() {
-        // Required empty public constructor
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
 
@@ -53,7 +60,7 @@ public class Chart extends Fragment implements ChartContract.View {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        SharedPreferences sharedPreferences=getContext().getSharedPreferences("classeye", Context.MODE_PRIVATE);
+         sharedPreferences=getContext().getSharedPreferences("classeye", Context.MODE_PRIVATE);
         this.presenter=new ChartPresenter(this,sharedPreferences);
         presenter.passRecords();
         View view=inflater.inflate(R.layout.fragment_extrapage, container, false);
